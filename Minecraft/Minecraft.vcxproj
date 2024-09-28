@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\repos\Minecraft\Minecraft\external\glm;D:\repos\Minecraft\Minecraft\external\glfw-3.4.bin.WIN64\include;D:\repos\Minecraft\Minecraft\external\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\repos\Minecraft\Minecraft\src;D:\repos\Minecraft\Minecraft\external\stb;D:\repos\Minecraft\Minecraft\external\glm;D:\repos\Minecraft\Minecraft\external\glfw-3.4.bin.WIN64\include;D:\repos\Minecraft\Minecraft\external\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,17 +136,28 @@
     <ClCompile Include="external\glad\src\glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\engine.cpp" />
+    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\game\chunk.cpp" />
+    <ClCompile Include="src\modules\audio.cpp" />
+    <ClCompile Include="src\modules\InputManager.cpp" />
     <ClCompile Include="src\modules\renderer.cpp" />
     <ClCompile Include="src\modules\renderer\camera.cpp" />
     <ClCompile Include="src\modules\renderer\mesh.cpp" />
     <ClCompile Include="src\modules\renderer\shader.cpp" />
+    <ClCompile Include="src\modules\renderer\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="external\stb\stb_image.h" />
     <ClInclude Include="src\engine.h" />
+    <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\game\chunk.h" />
+    <ClInclude Include="src\modules\audio.h" />
+    <ClInclude Include="src\modules\InputManager.h" />
     <ClInclude Include="src\modules\renderer.h" />
     <ClInclude Include="src\modules\renderer\camera.h" />
     <ClInclude Include="src\modules\renderer\mesh.h" />
     <ClInclude Include="src\modules\renderer\shader.h" />
+    <ClInclude Include="src\modules\renderer\texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

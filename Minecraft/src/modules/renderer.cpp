@@ -1,29 +1,16 @@
-#include "renderer.h"
+﻿#include "renderer.h"
 
 void Renderer::initialize()
 {
 	initializeWindow();
 	initializeRenderer();
 	initializeShaders();
-
-	resolution = glm::vec2(800, 600);
-	camera = new Camera(89.0f, resolution);
-	camera->position = glm::vec3(10, 0, 25);
-	camera->rotation = glm::vec3(0, 0, 0);
-
-	uint8_t* blocks = new uint8_t[4096];
-	memset(blocks, 0, 4096);
-	blocks[2] = 1;
-
-	ChunkMesh mesh(blocks);
-	chunks[0] = mesh;
-	chunks[0].createMesh();
 }
 
 void Renderer::initializeWindow()
 {
 	glfwInit();
-	window = glfwCreateWindow(800, 600, "Minecraft", nullptr, nullptr);
+	window = glfwCreateWindow(1920, 1080, "Minecraft", nullptr, nullptr);
 
 	glfwMakeContextCurrent(window);
 }
@@ -31,8 +18,13 @@ void Renderer::initializeWindow()
 void Renderer::initializeRenderer()
 {
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	glViewport(0, 0, 800, 600);
+	glViewport(0, 0, 1920, 1080);
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	chunkTexture.load("assets/textures/terrain.png");
+
 }
 
 void Renderer::initializeShaders()
@@ -59,9 +51,12 @@ void Renderer::render()
 
 void Renderer::renderChunks()
 {
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, chunkTexture.getId());
+
 	glUseProgram(shaders["terrain"].getId());
 
 	glm::mat4 vp = camera->getProjectionMatrix() * camera->getViewMatrix();
-	shaders["terrain"].setMat4("MVP", vp * chunks[0].getModelMatrix());
-	chunks[0].renderMesh();
+	shaders["terrain"].setMat4("MVP", vp * chunks.getModelMatrix());
+	chunks.renderMesh();
 }

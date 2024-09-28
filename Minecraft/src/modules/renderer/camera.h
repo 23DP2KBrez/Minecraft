@@ -6,6 +6,7 @@ class Camera
 public:
 	Camera() = default;
 	Camera(float fov, glm::vec2 resolution);
+
 	glm::vec3 position;
 	glm::vec3 rotation;
 

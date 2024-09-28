@@ -2,6 +2,7 @@
 #include "renderer/shader.h"
 #include "renderer/mesh.h"
 #include "renderer/camera.h"
+#include "renderer/texture.h"
 #include <unordered_map>
 #include "GLFW/glfw3.h"
 
@@ -12,18 +13,21 @@ public:
 	void render();
 
 	bool isOpen() { return !glfwWindowShouldClose(window); }
+
+	GLFWwindow* window;
+
+	Camera* camera;
+	glm::vec2 getResolution() { return glm::vec2(800, 600); }	
+
+	ChunkMesh chunks;
 private:
 	std::unordered_map<const char*, Shader> shaders;
-	std::unordered_map<unsigned int, ChunkMesh> chunks;
-
+	
 	void initializeWindow();
 	void initializeRenderer();
 	void initializeShaders();
 	
 	void renderChunks();
 
-	GLFWwindow* window;
-	Camera* camera;
-
-	glm::vec2 resolution;
+	TextureAtlas chunkTexture;
 };
