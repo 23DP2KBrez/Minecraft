@@ -17,17 +17,18 @@ public:
 	GLFWwindow* window;
 
 	Camera* camera;
-	glm::vec2 getResolution() { return glm::vec2(800, 600); }	
+	glm::vec2 getResolution() { return glm::vec2(800, 600); }
 
-	ChunkMesh chunks;
+	std::vector<Mesh*> meshArray;
 private:
 	std::unordered_map<const char*, Shader> shaders;
-	
+
+
 	void initializeWindow();
 	void initializeRenderer();
 	void initializeShaders();
 	
-	void renderChunks();
+	void renderMeshes();
 
 	TextureAtlas chunkTexture;
 };

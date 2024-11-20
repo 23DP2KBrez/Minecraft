@@ -1,17 +1,17 @@
 #include "mesh.h"
 #include "glad/glad.h"
 
-ChunkMesh::ChunkMesh(uint8_t* blocks) : blocks(blocks)
+Mesh::Mesh(uint8_t* blocks) : blocks(blocks)
 {
 
 }
 
-ChunkMesh::~ChunkMesh()
+Mesh::~Mesh()
 {
 
 }
 
-void ChunkMesh::createMesh()
+void Mesh::createMesh()
 {
     for (int x = 0; x < 16; x++)
     {
@@ -100,13 +100,13 @@ void ChunkMesh::createMesh()
     glBindVertexArray(0);
 }
 
-void ChunkMesh::renderMesh()
+void Mesh::renderMesh()
 {
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 5);
 }
 
-glm::mat4 ChunkMesh::getModelMatrix()
+glm::mat4 Mesh::getModelMatrix()
 {
     glm::mat4 matrix = glm::mat4(1.0f);
     matrix = glm::translate(matrix, glm::vec3(0.0f, 0.0f, 0.0f));

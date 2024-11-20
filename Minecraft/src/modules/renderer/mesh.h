@@ -11,12 +11,12 @@ static inline int getBlockIndex(int x, int y, int z)
 	return x * CHUNK_SIZE * CHUNK_SIZE + y * CHUNK_SIZE + z;
 }
 
-class ChunkMesh
+class Mesh
 {
 public:
-	ChunkMesh() = default;
-	ChunkMesh(uint8_t* blocks);
-	~ChunkMesh();
+	Mesh() = default;
+	Mesh(uint8_t* blocks);
+	~Mesh();
 	void createMesh();
 	void renderMesh();
 

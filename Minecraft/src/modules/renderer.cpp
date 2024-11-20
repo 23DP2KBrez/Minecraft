@@ -42,21 +42,22 @@ void Renderer::render()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	renderChunks();
+	renderMeshes();
 
 	glfwSwapBuffers(window);
 
 	glfwPollEvents();
 }
 
-void Renderer::renderChunks()
+void Renderer::renderMeshes()
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, chunkTexture.getId());
 
 	glUseProgram(shaders["terrain"].getId());
 
+	Mesh* mesh = meshArray[0];
 	glm::mat4 vp = camera->getProjectionMatrix() * camera->getViewMatrix();
-	shaders["terrain"].setMat4("MVP", vp * chunks.getModelMatrix());
-	chunks.renderMesh();
+	shaders["terrain"].setMat4("MVP", vp * mesh->getModelMatrix());
+	mesh->renderMesh();
 }

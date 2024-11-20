@@ -34,7 +34,7 @@ void Game::start()
 	}
 
 	chunk.mesh->createMesh();
-	engine->renderer->chunks = *chunk.mesh;
+	engine->renderer->meshArray.push_back(chunk.mesh);
 }
 
 void Game::update()
@@ -56,7 +56,7 @@ void Game::input()
 	{
 		glm::vec2 cursorPos = inputManager->getCursorPos();
 		camera->rotation.y += -((1920 / 2 - cursorPos.x) * 0.1f);
-		camera->rotation.x += ((1080 / 2 - cursorPos.y) * 0.1f);
+		camera->rotation.x += -((1080 / 2 - cursorPos.y) * 0.1f);
 		inputManager->setCursorPos(glm::vec2(1920 / 2, 1080 / 2));
 	}
 
